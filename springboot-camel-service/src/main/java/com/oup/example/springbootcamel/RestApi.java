@@ -1,15 +1,14 @@
 package com.oup.example.springbootcamel;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.model.rest.RestBindingMode;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RestApi extends RouteBuilder{
+public class RestApi extends RouteBuilder {
 
 	@Override
-    public void configure() {
-		
+	public void configure() {
+
 //        restConfiguration()
 //            .contextPath("/").apiContextPath("/api-doc")
 //                .apiProperty("api.title", "Billing Script API")
@@ -24,5 +23,5 @@ public class RestApi extends RouteBuilder{
 //                .route().routeId("postDeviceDataRoute")
 //                .log("======= Device Data :: ${body}")
 //                .endRest();
-    }
+	}
 }
