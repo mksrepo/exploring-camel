@@ -1,0 +1,9 @@
+camel:
+  springboot:
+    # The Camel context name
+    name: CamelRestJpa
+server:
+  port: 8080
+  
+logging:
+  config: classpath:logback-spring.xml
