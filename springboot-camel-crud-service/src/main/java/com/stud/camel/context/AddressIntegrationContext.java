@@ -17,30 +17,15 @@ public class AddressIntegrationContext implements AutoCloseable {
 
 	private CamelContext context = new DefaultCamelContext();
 
-	/**
-	 * @for basic purpose route configuration
-	 * @param builder
-	 * @throws Exception
-	 */
 	public void config() throws Exception {
 		context.addRoutes(new IntegrationRoute());
 		context.start();
 	}
 
-	/**
-	 * @for leveraging Producer template
-	 * @to send data
-	 * @param students
-	 */
 	public void sendBody(List<StudentDto> students) {
 		context.createProducerTemplate().sendBody(AppConstants.DIRECT_START, students);
 	}
 
-	/**
-	 * @for leveraging Consumer template
-	 * @to get data
-	 * @return List<StudentDto>
-	 */
 	@SuppressWarnings("unchecked")
 	public List<StudentDto> receiveBody() {
 		return context.createConsumerTemplate().receiveBody(AppConstants.SEDA_END, ArrayList.class);

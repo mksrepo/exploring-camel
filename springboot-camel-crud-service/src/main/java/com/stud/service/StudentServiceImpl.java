@@ -43,8 +43,14 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<StudentDto> camelExchange(List<StudentDto> students) throws Exception {
+		
+		// setup
 		context.config();
+		
+		// send
 		context.sendBody(students);
+		
+		// receive
 		return context.receiveBody();
 	}
 
