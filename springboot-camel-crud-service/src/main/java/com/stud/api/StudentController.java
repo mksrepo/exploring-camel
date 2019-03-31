@@ -13,23 +13,23 @@ public class StudentController implements RestStudentService {
 
 	@Autowired
 	StudentService studentService;
-	
+
 	@Override
-	public List<StudentDto> getStudent() {
-		return studentService.getStudents();
-		
+	public List<StudentDto> getStudent() throws Exception {
+
+		return studentService.camelExchange(studentService.getStudents());
 	}
 
 	@Override
 	public StudentDto addStudent(StudentDto student) {
 		return studentService.addStudent(student);
-		
+
 	}
 
 	@Override
 	public StudentDto updateSudent(StudentDto student) {
 		return studentService.updateSudent(student);
-		
+
 	}
 
 	@Override

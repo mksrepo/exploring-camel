@@ -12,4 +12,9 @@ public class StudentMapper {
 	public static StudentEntity dtoToEntity(StudentDto user) {
 		return new ObjectMapper().convertValue(user, StudentEntity.class);
 	}
+
+	public static StudentDto addCountry(StudentDto studentDto) {
+		studentDto.setAddress(studentDto.getAddress() + ", India");
+		return studentDto;
+	}
 }

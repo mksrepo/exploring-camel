@@ -6,9 +6,16 @@ import org.apache.camel.impl.DefaultCamelContext;
 
 public class IntegrationContext {
 
-	public static void config(RoutesBuilder builder) throws Exception {
+	/**
+	 * @for basic purpose route configuration
+	 * @param builder
+	 * @throws Exception
+	 */
+	public static CamelContext config(RoutesBuilder builder) throws Exception {
 		CamelContext context = new DefaultCamelContext();
 		context.addRoutes(builder);
 		context.start();
+		return context;
 	}
+	
 }

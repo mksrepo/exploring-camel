@@ -9,12 +9,14 @@ import com.stud.bean.StudentDto;
 
 public interface StudentService {
 
-	public List<StudentDto> getStudents();
+	List<StudentDto> getStudents();
 
-	public StudentDto addStudent(@RequestBody StudentDto studentDto);
+	StudentDto addStudent(@RequestBody StudentDto studentDto);
 
-	public StudentDto updateSudent(@RequestBody StudentDto studentDto);
+	StudentDto updateSudent(@RequestBody StudentDto studentDto);
 
-	public String removeStudent(@PathVariable Long roll);
+	String removeStudent(@PathVariable Long roll);
+
+	List<StudentDto> camelExchange(List<StudentDto> students) throws Exception;
 
 }

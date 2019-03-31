@@ -19,7 +19,7 @@ import com.stud.util.AppConstant;
 public interface RestStudentService {
 
 	@GetMapping(AppConstant.URL_GET)
-	public List<StudentDto> getStudent();
+	public List<StudentDto> getStudent() throws Exception;
 
 	@PostMapping(AppConstant.URL_ADD)
 	public StudentDto addStudent(@RequestBody StudentDto user);
