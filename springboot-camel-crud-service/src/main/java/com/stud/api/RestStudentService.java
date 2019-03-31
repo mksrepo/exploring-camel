@@ -12,22 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.stud.bean.StudentDto;
-import com.stud.util.AppConstant;
+import com.stud.util.AppConstants;
 
 @RestController
-@RequestMapping("/sms")
+@RequestMapping(AppConstants.URL_ROOT)
 public interface RestStudentService {
 
-	@GetMapping(AppConstant.URL_GET)
+	@GetMapping(AppConstants.URL_GET)
 	public List<StudentDto> getStudent() throws Exception;
 
-	@PostMapping(AppConstant.URL_ADD)
+	@PostMapping(AppConstants.URL_ADD)
 	public StudentDto addStudent(@RequestBody StudentDto user);
 
-	@PutMapping(AppConstant.URL_UPDATE)
+	@PutMapping(AppConstants.URL_UPDATE)
 	public StudentDto updateSudent(@RequestBody StudentDto user);
 
-	@DeleteMapping(AppConstant.URL_DELETE)
+	@DeleteMapping(AppConstants.URL_DELETE)
 	public String removeStudent(@PathVariable Long roll);
 
 }

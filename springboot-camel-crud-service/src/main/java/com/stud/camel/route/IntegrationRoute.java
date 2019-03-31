@@ -4,15 +4,15 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 import com.stud.camel.processor.IntegrationProcessor;
-import com.stud.util.AppConstant;
+import com.stud.util.AppConstants;
 
 @Component
 public class IntegrationRoute extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
-		from(AppConstant.DIRECT_START)
+		from(AppConstants.DIRECT_START)
 		.process(new IntegrationProcessor())
-		.to(AppConstant.SEDA_END);
+		.to(AppConstants.SEDA_END);
 	}
 }

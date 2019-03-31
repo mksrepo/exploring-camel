@@ -14,7 +14,11 @@ public class StudentMapper {
 	}
 
 	public static StudentDto addCountry(StudentDto studentDto) {
-		studentDto.setAddress(studentDto.getAddress() + ", India");
+		studentDto.setAddress(new StringBuilder()
+				.append(studentDto.getAddress())
+				.append(AppConstants.COMMA_SEPARATOR)
+				.append(AppConstants.KEYWORD_INDIA)
+				.toString());
 		return studentDto;
 	}
 }
