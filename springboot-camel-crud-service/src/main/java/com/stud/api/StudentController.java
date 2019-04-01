@@ -16,8 +16,8 @@ public class StudentController implements RestStudentService {
 
 	@Override
 	public List<StudentDto> getStudent() throws Exception {
-
 		return studentService.camelExchange(studentService.getStudents());
+		
 	}
 
 	@Override
