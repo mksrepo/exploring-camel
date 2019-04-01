@@ -15,9 +15,10 @@ import com.stud.util.AppConstants;
 @Component
 public class AddressIntegrationContext implements AutoCloseable {
 
-	private CamelContext context = new DefaultCamelContext();
+	private CamelContext context;
 
 	public void config() throws Exception {
+		context = new DefaultCamelContext();
 		context.addRoutes(new IntegrationRoute());
 		context.start();
 	}
