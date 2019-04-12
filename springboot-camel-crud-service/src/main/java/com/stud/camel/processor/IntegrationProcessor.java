@@ -8,7 +8,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.springframework.stereotype.Component;
 
-import com.stud.bean.StudentDto;
+import com.stud.model.Student;
 import com.stud.util.StudentMapper;
 
 @Component("IntegrationProcessor")
@@ -17,14 +17,17 @@ public class IntegrationProcessor implements Processor {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void process(Exchange exchange) throws Exception {
-
 		// Get
-		List<StudentDto> students = exchange.getIn().getBody(ArrayList.class);
-
+		List<Student> students = exchange.getIn().getBody(ArrayList.class);
 		// Process
-		students = students.stream().map(StudentMapper::addCountry).collect(Collectors.toList());
-
+		students = students.stream()
+				// Updating address details
+				.map(StudentMapper::addCountry)
+				// Updating educational details
+				.map(StudentMapper::addEducationDetails)
+				.collect(Collectors.toList());
 		// Update
 		exchange.getOut().setBody(students);
 	}
+	
 }

@@ -1,10 +1,11 @@
-package com.stud.bean;
+package com.stud.model;
 
-public class StudentDto {
-	
+public class Student {
+
 	private Long roll;
 	private String name;
 	private String address;
+	String educationDetials;
 
 	public Long getRoll() {
 		return roll;
@@ -28,6 +29,14 @@ public class StudentDto {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getEducationDetials() {
+		return educationDetials;
+	}
+
+	public void setEducationDetials(String educationDetials) {
+		this.educationDetials = educationDetials;
 	}
 
 }

@@ -1,45 +1,27 @@
 package com.stud.camel.context;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.camel.CamelContext;
-import org.apache.camel.impl.DefaultCamelContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.stud.bean.StudentDto;
-import com.stud.camel.route.IntegrationRoute;
+import com.stud.model.Student;
 import com.stud.util.AppConstants;
 
 @Component
-public class AddressIntegrationContext implements AutoCloseable {
+public class AddressIntegrationContext {
 
+	@Autowired
 	private CamelContext context;
 
-	public void config() throws Exception {
-		context = new DefaultCamelContext();
-		context.addRoutes(new IntegrationRoute());
-		context.start();
-	}
-
-	public void sendBody(List<StudentDto> students) {
+	public void sendBody(List<Student> students) {
 		context.createProducerTemplate().sendBody(AppConstants.DIRECT_START, students);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<StudentDto> receiveBody() {
+	public List<Student> receiveBody() {
 		return context.createConsumerTemplate().receiveBody(AppConstants.SEDA_END, ArrayList.class);
 	}
-
-	@Override
-	public void close() throws IOException {
-		try {
-			context.stop();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
 }

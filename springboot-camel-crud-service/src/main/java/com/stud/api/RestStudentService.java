@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.stud.bean.StudentDto;
+import com.stud.model.Student;
 import com.stud.util.AppConstants;
 
 @RequestMapping(AppConstants.URL_ROOT)
 public interface RestStudentService {
 
 	@GetMapping(AppConstants.URL_GET)
-	public List<StudentDto> getStudent() throws Exception;
+	public List<Student> getStudent() throws Exception;
 
 	@PostMapping(AppConstants.URL_ADD)
-	public StudentDto addStudent(@RequestBody StudentDto user);
+	public Student addStudent(@RequestBody Student user);
 
 	@PutMapping(AppConstants.URL_UPDATE)
-	public StudentDto updateSudent(@RequestBody StudentDto user);
+	public Student updateSudent(@RequestBody Student user);
 
 	@DeleteMapping(AppConstants.URL_DELETE)
 	public String removeStudent(@PathVariable Long roll);

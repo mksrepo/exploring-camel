@@ -5,18 +5,18 @@ import java.util.List;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.stud.bean.StudentDto;
+import com.stud.model.Student;
 
 public interface StudentService {
 
-	List<StudentDto> getStudents();
+	List<Student> getStudents();
 
-	StudentDto addStudent(@RequestBody StudentDto studentDto);
+	Student addStudent(@RequestBody Student studentDto);
 
-	StudentDto updateSudent(@RequestBody StudentDto studentDto);
+	Student updateSudent(@RequestBody Student studentDto);
 
 	String removeStudent(@PathVariable Long roll);
 
-	List<StudentDto> camelExchange(List<StudentDto> students) throws Exception;
+	List<Student> camelExchange(List<Student> students) throws Exception;
 
 }

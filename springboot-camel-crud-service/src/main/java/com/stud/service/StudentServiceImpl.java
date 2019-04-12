@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.stud.bean.StudentDto;
 import com.stud.camel.context.AddressIntegrationContext;
+import com.stud.model.Student;
 import com.stud.repo.StudentRepository;
 import com.stud.util.StudentMapper;
 
@@ -21,18 +21,21 @@ public class StudentServiceImpl implements StudentService {
 	AddressIntegrationContext context;
 
 	@Override
-	public List<StudentDto> getStudents() {
-		return studentRepo.findAll().stream().map(StudentMapper::entityToDto).collect(Collectors.toList());
+	public List<Student> getStudents() {
+		return studentRepo.findAll().stream()
+				// Converting from Entity to DTO
+				.map(StudentMapper::entityToDto)
+				.collect(Collectors.toList());
 	}
 
 	@Override
-	public StudentDto addStudent(StudentDto studentDto) {
-		return StudentMapper.entityToDto(studentRepo.save(StudentMapper.dtoToEntity(studentDto)));
+	public Student addStudent(Student student) {
+		return StudentMapper.entityToDto(studentRepo.save(StudentMapper.dtoToEntity(student)));
 	}
 
 	@Override
-	public StudentDto updateSudent(StudentDto studentDto) {
-		return StudentMapper.entityToDto(studentRepo.save(StudentMapper.dtoToEntity(studentDto)));
+	public Student updateSudent(Student student) {
+		return StudentMapper.entityToDto(studentRepo.save(StudentMapper.dtoToEntity(student)));
 	}
 
 	@Override
@@ -42,19 +45,11 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public List<StudentDto> camelExchange(List<StudentDto> students) throws Exception {
-		try {
-			// setup
-			context.config();
-
-			// send
-			context.sendBody(students);
-
-			// receive
-			return context.receiveBody();
-		} finally {
-			context.close();
-		}
+	public List<Student> camelExchange(List<Student> students) throws Exception {
+		// Sending data to Router
+		context.sendBody(students);
+		// Receiving data from Router
+		return context.receiveBody();
 	}
 
 }

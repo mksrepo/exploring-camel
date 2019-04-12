@@ -12,6 +12,7 @@ public class AppConstants {
 	// @Camel
 	public static final String DIRECT_START = "direct:start";
 	public static final String SEDA_END = "seda:end";
+	public static final String EXTERNAL_END = "external:end";
 
 	// @General
 
